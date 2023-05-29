@@ -63,7 +63,7 @@ function clearCards() {
   }
 }
 
-function  createCard(data) {
+function createCard(data) {
   var cardWrapper = document.createElement("div");
   cardWrapper.className = "shared-moment-card mdl-card mdl-shadow--2dp";
   var cardTitle = document.createElement("div");
@@ -97,7 +97,7 @@ function updateUI(data) {
   }
 }
 
-var url = "http://192.168.0.112:4000/post";
+var url = `${constants.BACKEND_URL}/post`;
 var networkDataReceived = false;
 
 fetch(url)
@@ -140,7 +140,7 @@ if ("indexedDB" in window) {
 // }
 
 function sendData() {
-  fetch("http://192.168.0.112:4000/post", {
+  fetch(`${constants.BACKEND_URL}/post`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

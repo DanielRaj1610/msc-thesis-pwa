@@ -1,14 +1,15 @@
 importScripts("/src/js/idb.js");
 importScripts("/src/js/utility.js");
-
-var CACHE_STATIC_NAME = "static-v5";
-var CACHE_DYNAMIC_NAME = "dynamic-v3";
+importScripts("/src/js/constants.js");
+var CACHE_STATIC_NAME = "static-v6";
+var CACHE_DYNAMIC_NAME = "dynamic-v4";
 var STATIC_FILES = [
   "/",
   "/index.html",
   "/offline.html",
   "/src/js/idb.js",
   "/src/js/utility.js",
+  "/src/js/constants.js",
   "/src/js/app.js",
   "/src/js/feed.js",
   "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js",
@@ -76,7 +77,7 @@ function isInArray(string, array) {
 }
 
 self.addEventListener("fetch", function (event) {
-  var url = "http://192.168.0.112:4000/post";
+  var url = `${constants.BACKEND_URL}/post`;
 
   if (event.request.url.indexOf(url) > -1) {
     event.respondWith(
@@ -88,7 +89,7 @@ self.addEventListener("fetch", function (event) {
           })
           .then(function (data) {
             console.log(data, "to cache");
-            data.for((item) => {
+            data.forEach((item) => {
               writeData("posts", item);
             });
             // for (var key in data) {
@@ -137,7 +138,7 @@ self.addEventListener("sync", function (event) {
     event.waitUntil(
       readAllData("sync-posts").then(function (data) {
         for (var dt of data) {
-          fetch("http://192.168.0.112:4000/post", {
+          fetch(`${process.env.BACKEND_URL}/post`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
