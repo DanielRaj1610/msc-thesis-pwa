@@ -1,0 +1,18 @@
+{
+  "name": "pwa-base",
+  "version": "1.0.0",
+  "description": "Base app for PWA cache strategies",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PWA"
+  ],
+  "author": "Daniel Raj",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "latest"
+  }
+}
