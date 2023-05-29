@@ -4,7 +4,7 @@
   "description": "Base app for PWA cache strategies",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -c-1 --proxy http://localhost:8080?",
+    "start": "http-server -c-1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
